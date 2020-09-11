@@ -81,7 +81,10 @@ const Modal = ({movie, position, close}: ModalProps) => {
         0,
     );
     const translationY = new Value(0);
-    const shouldClose = greaterOrEq(round(translationY), 100);
+    /*
+           Rajesh: Reduced the animated number from 100 to 30 so that size of image will be less and animation will be smooth
+     */
+    const shouldClose = greaterOrEq(round(translationY), 30);
     const p: AnimatedStyle = {
         position: 'absolute',
         width: width.value,
@@ -132,16 +135,14 @@ const Modal = ({movie, position, close}: ModalProps) => {
                     ...p,
                 }}>
                 <View style={styles.content}>
-                    <ScrollView>
-                        <Text style={styles.paragraph}>
-                            <Text style={{fontWeight: 'bold'}}>
-                                {`${titleCase(movie.name)} `}
-                            </Text>
-                            <Text style={styles.paragraph}>
-                                {movie.description}
-                            </Text>
+                    <Text style={styles.paragraph}>
+                        <Text style={{fontWeight: 'bold'}}>
+                            {`${titleCase(movie.name)} `}
                         </Text>
-                    </ScrollView>
+                        <Text style={styles.paragraph}>
+                            {movie.description}
+                        </Text>
+                    </Text>
                 </View>
             </Animated.View>
             <Animated.View style={{...p, height: position.height}}>

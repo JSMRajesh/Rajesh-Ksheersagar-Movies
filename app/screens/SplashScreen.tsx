@@ -25,10 +25,14 @@ const Splash = () => {
     const resetNavigation = useCallback(() => {
         Animated.timing(scale, {
             toValue: 2000,
-            duration: 200,
+            duration: 100,
             useNativeDriver: true,
         }).start(() => {
-            const movies: Array<Movie> = generateMovies(25, 5);
+            /*Rajesh:
+                Removed movie count from Here and added in generatedMovies method. Always we need to get size first and assign to method.
+            */
+            const movies: Array<Movie> = generateMovies(5);
+
             navigation.reset({
                 index: 0,
                 routes: [{name: 'Start', params: {movies}}],

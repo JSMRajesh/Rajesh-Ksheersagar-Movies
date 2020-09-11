@@ -35,12 +35,16 @@ const makeReviews = (movie, count) => {
     movie.reviews = reviews;
 };
 
-const generateMovies = (moviesCount, reviewsPerMovie) => {
-    const movies = times((i) => makeRandomMovie(i), moviesCount);
-
-    flatMap((movie) => makeReviews(movie, fuzzCount(reviewsPerMovie)), movies);
-
-    return movies;
+const generateMovies = (reviewsPerMovie) => {
+    const moviesCount = moviesData.length;
+    if (moviesCount > 0) {
+        const movies = times((i) => makeRandomMovie(i), moviesCount);
+        flatMap(
+            (movie) => makeReviews(movie, fuzzCount(reviewsPerMovie)),
+            movies,
+        );
+        return movies;
+    }
 };
 
 export default generateMovies;
